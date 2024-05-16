@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Brad</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .background-container {
+            background-image: url('{% static "images/log.jpeg" %}');
+            background-repeat: no-repeat;
+            background-size: cover;
+            max-width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(0.1px);
+            z-index: -1;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(12, 9, 9, 0.5);
+            z-index: -1;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        .quote {
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+        }
+        .login-form {
+           
+            padding: 20px;
+            border-radius: 10px;
+        }
+        @media (max-width: 576px) {
+            .quote {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container"></div> <!-- Container for the blurred background image -->
+    <div class="overlay"></div> <!-- Overlay to create a semi-transparent background -->
+    <div class="container mt-5">
+        <h2 class="text-center text-white p-2">WELCOME TO Clothing.in</h2>
+        
+       
+
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-6 col-lg-6 border">
+                <form action="{% url 'signupform' %}" method="post" enctype="multipart/form-data" class="login-form" >
+                    {% csrf_token %}
+                    <h2 class="text-center text-white">Add Profile</h2>
+                    <label class="text-white">First Name</label><br>
+                    <input type="text" name="fname" class="form-control mt-3" placeholder="First Name"><br>
+                    <label class="text-white">Last Name</label><br>
+                    <input type="text" name="lname" class="form-control mt-3" placeholder="First Name"><br>
+                    <label class="text-white">Email Address</label><br>
+                    <input type="email" name="email" class="form-control mt-3" placeholder="Email Address"><br>
+                    <label class="text-white">Username</label><br>
+                    <input type="text" name="username" class="form-control mt-3" placeholder="Username"><br>
+                    <label class="text-white">Password</label><br>
+                    <input type="password" name="password" class="form-control mt-3" placeholder="Password"><br>
+                    <label class="text-white"> Confirm Password</label><br>
+                    <input type="password" name="cpassword" class="form-control mt-3" placeholder="Re-enter Password"><br>
+                    <label class="text-white">Address</label><br>
+                    <input type="text" name="address" class="form-control mt-3" placeholder="Address"><br>
+                    <label class="text-white">Contact No</label><br>
+                    <input type="text" name="contact" class="form-control mt-3" placeholder="Contact Number"><br>
+                    <label class="text-white">Upload Photo</label><br>
+                    <input type="file" name="image" class="form-control mt-3"accept="image/*"><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-dark btn-outline-light mt-3 w-50">Submit</button>
+                    </div><br>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

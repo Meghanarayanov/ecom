@@ -1,0 +1,207 @@
+{% extends 'userbase.html' %}
+{% block content %}
+{% load static %}
+<style>@media (max-width:1500px) {
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }}
+    .body{
+        background-color: rgb(15, 19, 17);
+    }
+
+.top-navbar{
+    width:100%;
+    height: 50px;
+    background-color: rgb(201, 201, 133);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+  
+}
+.top-icons{
+    margin-left: 45px;
+    padding-right: 10px;
+}
+.top-icon i{
+    font-size: 20px;
+    color: rgb(35, 35, 73);
+    margin-left:10px;
+    cursor: pointer;
+    
+
+}
+
+.other-links{
+    margin-left: 35px;
+    padding-right: 15px;
+
+}.other-links a{
+    color: green;
+    padding-right: 10px;
+}
+.other-links i{
+    color: black;
+    padding-right: 10px;
+}
+.alert{
+    text-align: center;
+    font-size: x-large;
+}
+h1{
+    text-align: center;
+}
+.heading{
+   
+    background-color: rgb(236, 233, 237);
+}
+
+.footer .row{
+    margin-left: 50px;
+   ;
+}
+.footer h5{
+    color: white;
+    text-decoration: underline;
+    margin-top: 20px;
+    
+}
+.footer a{
+    color: white;
+    font-size: small;
+}
+hr{
+    color: white;
+}
+.btn-container{
+    text-align: center;
+    
+}
+.product-image{
+    height: 100px;}
+    .btn-container {
+            text-align: center; 
+        }
+</style>
+<body>
+    <body>
+
+        <br>
+        
+        <div class="background-container">
+        
+        <div class="container table-container mt-5">
+            <br><br>
+            <h2 class="text-center text-dark">Your Cart</h2><br>
+            <div class="table-responsive">
+                <table class="table table-bordered text-dark text-center">
+                    <thead>
+                        <tr><th>Image</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in caite %}
+                        <tr><td><img src="{{ c.product.product_image.url }}" alt="" class="product-image "></td>
+                            <td>{{c.product.product_name}}</td>
+                            <td>{{c.product.product_description}}</td>
+                            <td>{{c.product.product_price}}</td>
+                            <td>
+                                <a href="{% url 'decrease' c.product.id %}" class="btn btn-sm btn-danger ml-2"><i class="fas fa-minus"></i></a>
+                                {{c.quantity}}
+                                <a href="{% url 'increase' c.product.id %}" class="btn btn-sm btn-success ml-2"><i class="fas fa-plus"></i></a>
+                            </td>
+                            <td>Rs:{{c.total_price}}</td>
+                            
+                            <td>
+                                <a href="{% url 'remove' c.product.id %}" class="btn btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br><br>
+                
+                <br>
+            </div>
+            <td><h1>Total: Rs.{{totalprice}}</h1></td><br><br>
+                <div class="btn-container">
+                    <a class="btn btn-success col-md-6 ml-10" href="{% url 'checkout' %}">Checkout</a>
+                    
+                </div><br>
+        </div>
+    
+      <footer class="footer">
+        <div class="container-fluid bg-dark">
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <h5> Clothing.in</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+                
+              </ul>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <h5>Terms & Conditions</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">We Respect Your Privacy</a></li>
+                <li><a href="#">Fees & Payments</a></li>
+                <li><a href="#">Returns & Refunds</a></li>
+                <li><a href="#">PolicyPromotions</a></li>
+              </ul>
+            
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <h5>Help</h5>
+              <ul class="list-unstyled">
+                <li><a href="#">Track Your Order</a></li>
+                <li><a href="#">Frequently Asked Questions</a></li>
+                <li><a href="#"> Returns</a></li>
+                <li><a href="#"> Cancellations</a></li>
+                <li><a href=""> Payments</a></li>
+                <li><a href=""> Customer Care</a></li>
+                <li><a href=""> How Do I Redeem My Coupon</a></li>
+              </ul>
+            
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <h5>Shop by</h5>
+              <ul class="list-unstyled">
+                <li><a href="#"> Men</a></li>
+                <li><a href="#"> Women</a></li>
+                <li><a href="#"> Kids</a></li>
+                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Brand </a></li>
+              </ul>
+            
+            </div>
+          </div><hr >
+          <div class="row">
+            <div class="col-md-12 ">
+                <p class="text-center text-white">Copyright © 2024 Clothing.in. All rights reserved.
+            </div>
+          </div>
+          <div class="social-icons text-center">
+            <p class="text-white">Follow Us On:</p>
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+           
+        </div>
+        </div>
+      </footer>
+</body>
+</html>
+{% endblock %}
